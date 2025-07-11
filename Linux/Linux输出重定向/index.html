@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Linux输出重定向 - shaway</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="shaway"><meta name="msapplication-TileImage" content="/images/logo/sasuke.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="shaway"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="316x316" href="/images/logo/sasuke.png"><meta name="description" content="Linux中的输出重定向以及“＞&amp;#x2F;dev&amp;#x2F;null 2＞&amp;amp;1“的解释"><meta property="og:type" content="blog"><meta property="og:title" content="Linux输出重定向"><meta property="og:url" content="https://shawayl.github.io/Linux/Linux%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91/"><meta property="og:site_name" content="shaway"><meta property="og:description" content="Linux中的输出重定向以及“＞&amp;#x2F;dev&amp;#x2F;null 2＞&amp;amp;1“的解释"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://shawayl.github.io/images/cover/737400.jpg"><meta property="article:published_time" content="2022-11-04T09:11:01.000Z"><meta property="article:modified_time" content="2022-11-04T09:11:01.000Z"><meta property="article:author" content="shaway"><meta property="article:tag" content="Linux"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://shawayl.github.io/images/cover/737400.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://shawayl.github.io/Linux/Linux%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91/"},"headline":"Linux输出重定向","image":["https://shawayl.github.io/images/cover/737400.jpg"],"datePublished":"2022-11-04T09:11:01.000Z","dateModified":"2022-11-04T09:11:01.000Z","author":{"@type":"Person","name":"shaway"},"publisher":{"@type":"Organization","name":"shaway","logo":{"@type":"ImageObject","url":"https://shawayl.github.io/images/logo/sasuke.png"}},"description":"Linux中的输出重定向以及“＞&#x2F;dev&#x2F;null 2＞&amp;1“的解释"}</script><link rel="canonical" href="https://shawayl.github.io/Linux/Linux%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91/"><link rel="icon" href="/images/logo/sasuke.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/logo/sasuke.png" alt="shaway" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="repositories" href="https://github.com/ShawayL/HexoBlog"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/images/cover/737400.jpg" alt="Linux输出重定向"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-11-04T09:11:01.000Z" title="11/4/2022, 9:11:01 AM">2022-11-04</time>发表</span><span class="level-item"><time dateTime="2022-11-04T09:11:01.000Z" title="11/4/2022, 9:11:01 AM">2022-11-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Linux/">Linux</a></span><span class="level-item">2 分钟读完 (大约316个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Linux输出重定向</h1><div class="content"><blockquote>
+<p>:重定向,但是会删除原先内容</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>:重定向,不会删除原本内容,会在后边追加</p>
+</blockquote>
+</blockquote>
+<p>linux中1代表标准输出，2代表的是标准错误输出，&#x2F;dev&#x2F;nulll等价于一个只写文件. 所有写入它的内容都会永远丢失</p>
+<p>ls xxx &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1这个命令的意思就是将ls xxx命令的标准输出重定向到&#x2F;dev&#x2F;null中，然后将标准错误输出重定向到标准输出中,这样运行的结果就什么都不会输出了。</p>
+<p>ls xxx &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1也可以写成ls xxx 1&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1</p>
+<p>但是&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1的顺序不能换，如果顺序颠倒写成|<br>ls xxx 2&gt;&amp;1 1&gt;&#x2F;dev&#x2F;null<br>的后果就是标准输出定位到了&#x2F;dev&#x2F;null中，但是标准错误输出还是会打印在屏幕上。</p>
+<p>可以理解成shell脚本是从做往右读取的，如果在输出标准错误时读取到了2&gt;&amp;1那么就会认为标准错误要输出到标准输出中，不会往右继续读了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost lib64]# find ./ -name &quot;*FDO*&quot; | xargs ldd 2&gt;&amp;1 1&gt;/dev/null</span><br><span class="line">ldd: warning: you do not have execution permission for `./FDO.py&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到如果写反了，标准错误还是会被打印出来。</p>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/Linux/Linux%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Linux动态库的查找方式与优先级</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/Linux/linux-core%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90%E8%AE%BE%E7%BD%AE/"><span class="level-item">linux core文件生成设置</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar/sasuke.jpg" alt="Shaway"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Shaway</p><p class="is-size-6 is-block">但行好事，莫问前程</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>The junction of Teyvat and Demacia</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">18</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">13</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ShawayL" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ShawayL"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><figure class="media-left"><a class="image" href="/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/"><img src="/images/cover/640%20(1).png" alt="软件设计师"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-04-18T06:14:00.000Z">2025-04-18</time></p><p class="title"><a href="/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">软件设计师</a></p><p class="categories"><a href="/categories/%E8%BD%AF%E8%80%83/">软考</a> / <a href="/categories/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">软件设计师</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/Kubernetes/kubernetes%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/"><img src="/images/cover/1050187.jpg" alt="kubernetes部署服务"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-03-12T01:48:00.000Z">2025-03-12</time></p><p class="title"><a href="/Kubernetes/kubernetes%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/">kubernetes部署服务</a></p><p class="categories"><a href="/categories/kubernetes/">kubernetes</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E5%8E%9F%E7%A0%81_%E5%8F%8D%E7%A0%81_%E8%A1%A5%E7%A0%81_%E7%A7%BB%E7%A0%81/"><img src="/images/cover/640%20(1).png" alt="原码、反码、补码、移码"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-03-07T06:14:00.000Z">2025-03-07</time></p><p class="title"><a href="/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E5%8E%9F%E7%A0%81_%E5%8F%8D%E7%A0%81_%E8%A1%A5%E7%A0%81_%E7%A7%BB%E7%A0%81/">原码、反码、补码、移码</a></p><p class="categories"><a href="/categories/%E8%BD%AF%E8%80%83/">软考</a> / <a href="/categories/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">软件设计师</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/Docker/Liunx%E4%BD%BF%E7%94%A8Docker%E7%BC%96%E8%AF%91web%E9%A1%B9%E7%9B%AE/"><img src="/images/cover/qyccover0.jpg" alt="Liunx使用Docker编译web项目"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-02-25T03:20:56.000Z">2025-02-25</time></p><p class="title"><a href="/Docker/Liunx%E4%BD%BF%E7%94%A8Docker%E7%BC%96%E8%AF%91web%E9%A1%B9%E7%9B%AE/">Liunx使用Docker编译web项目</a></p><p class="categories"><a href="/categories/Docker/">Docker</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/C_C++/cpp%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8Cstd-move/"><img src="/images/cover/1050187.jpg" alt="c++右值引用和std::move"></a></figure><div class="media-content"><p class="date"><time dateTime="2023-06-30T02:39:49.000Z">2023-06-30</time></p><p class="title"><a href="/C_C++/cpp%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8Cstd-move/">c++右值引用和std::move</a></p><p class="categories"><a href="/categories/C-C/">C/C++</a></p></div></article></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/ShawayL" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Shaway github</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/logo/sasuke.png" alt="shaway" height="28"></a><p class="is-size-7"><span>&copy; 2025 shaway</span>  Powered by <a href="https://github.com/ShawayL" target="_blank" rel="noopener">Shaway</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ShawayL/ShawayL.github.io"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

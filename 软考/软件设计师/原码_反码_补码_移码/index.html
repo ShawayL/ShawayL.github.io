@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>原码、反码、补码、移码 - shaway</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="shaway"><meta name="msapplication-TileImage" content="/images/logo/sasuke.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="shaway"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="316x316" href="/images/logo/sasuke.png"><meta name="description" content="原码、反码、补码、移码"><meta property="og:type" content="blog"><meta property="og:title" content="原码、反码、补码、移码"><meta property="og:url" content="https://shawayl.github.io/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E5%8E%9F%E7%A0%81_%E5%8F%8D%E7%A0%81_%E8%A1%A5%E7%A0%81_%E7%A7%BB%E7%A0%81/"><meta property="og:site_name" content="shaway"><meta property="og:description" content="原码、反码、补码、移码"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://shawayl.github.io/images/cover/640%20(1).png"><meta property="article:published_time" content="2025-03-07T06:14:00.000Z"><meta property="article:modified_time" content="2025-03-07T06:14:00.000Z"><meta property="article:author" content="shaway"><meta property="article:tag" content="软考"><meta property="article:tag" content="软件设计师"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://shawayl.github.io/images/cover/640%20(1).png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://shawayl.github.io/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E5%8E%9F%E7%A0%81_%E5%8F%8D%E7%A0%81_%E8%A1%A5%E7%A0%81_%E7%A7%BB%E7%A0%81/"},"headline":"原码、反码、补码、移码","image":["https://shawayl.github.io/images/cover/640%20(1).png"],"datePublished":"2025-03-07T06:14:00.000Z","dateModified":"2025-03-07T06:14:00.000Z","author":{"@type":"Person","name":"shaway"},"publisher":{"@type":"Organization","name":"shaway","logo":{"@type":"ImageObject","url":"https://shawayl.github.io/images/logo/sasuke.png"}},"description":"原码、反码、补码、移码"}</script><link rel="canonical" href="https://shawayl.github.io/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E5%8E%9F%E7%A0%81_%E5%8F%8D%E7%A0%81_%E8%A1%A5%E7%A0%81_%E7%A7%BB%E7%A0%81/"><link rel="icon" href="/images/logo/sasuke.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/logo/sasuke.png" alt="shaway" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="repositories" href="https://github.com/ShawayL/HexoBlog"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/images/cover/640%20(1).png" alt="原码、反码、补码、移码"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-03-07T06:14:00.000Z" title="3/7/2025, 6:14:00 AM">2025-03-07</time>发表</span><span class="level-item"><time dateTime="2025-03-07T06:14:00.000Z" title="3/7/2025, 6:14:00 AM">2025-03-07</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%BD%AF%E8%80%83/">软考</a><span> / </span><a class="link-muted" href="/categories/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">软件设计师</a></span><span class="level-item">8 分钟读完 (大约1145个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">原码、反码、补码、移码</h1><div class="content"><ul>
+<li><a href="#%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E7%A7%BB%E7%A0%81">原码、反码、补码、移码</a><ul>
+<li><a href="#%E5%8E%9F%E7%A0%81">原码</a></li>
+<li><a href="#%E5%8F%8D%E7%A0%81">反码</a></li>
+<li><a href="#%E8%A1%A5%E7%A0%81">补码</a></li>
+<li><a href="#%E7%A7%BB%E7%A0%81">移码</a></li>
+<li><a href="#0%E7%9A%84%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E7%A7%BB%E7%A0%81">0的原码、反码、补码、移码</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA">浮点数的二进制表示</a></li>
+<li><a href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E5%8A%A0%E6%B3%95%E8%BF%90%E7%AE%97">浮点数加法运算</a></li>
+<li><a href="#%E8%A7%84%E6%A0%BC%E5%8C%96">规格化</a></li>
+<li><a href="#todo">TODO</a></li>
+</ul>
+<h3 id="原码、反码、补码、移码"><a href="#原码、反码、补码、移码" class="headerlink" title="原码、反码、补码、移码"></a>原码、反码、补码、移码</h3><p>原码、反码、补码和移码是计算机中表示和处理有符号数的几种方法。</p>
+<h4 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h4><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8E%9F%E7%A0%81">原码</a>是计算机中表示有符号数的一种最简单的方法。它使用最高位表示符号位，0表示正数，1表示负数，其余位表示数值的绝对值。例如，8位二进制数中，+5的原码表示为<code>00000101</code>，-5的原码表示为<code>10000101</code>。</p>
+<p>表示范围：8位原码的表示范围为<code>[-127~+127]</code></p>
+<h4 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h4><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%B8%80%E8%A3%9C%E6%95%B8">反码</a>是对原码的一种改进表示方法。正数的反码与原码相同，负数的反码是对原码逐位取反（符号位除外）。例如，8位二进制数中，+5的反码表示为<code>00000101</code>，-5的反码表示为<code>11111010</code>。</p>
+<p>表示范围：8位反码的表示范围为<code>[-127~+127]</code></p>
+<h4 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h4><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%A3%9C%E6%95%B8">补码</a>是计算机中最常用的表示有符号数的方法，<strong>常用于进行数字加减法</strong>。正数的补码与原码相同，负数的补码是其反码加1。例如，8位二进制数中，+5的补码表示为<code>00000101</code>，-5的补码表示为<code>11111011</code>。  </p>
+<p>表示范围：8位补码的表示范围为<code>[-128~+127]</code></p>
+<p>下表为4位补码与十进制的对应关系</p>
+<table>
+<thead>
+<tr>
+<th>补码</th>
+<th>十进制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0111</td>
+<td>7</td>
+</tr>
+<tr>
+<td>0110</td>
+<td>6</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>2</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>−2</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>−7</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>−8</td>
+</tr>
+</tbody></table>
+<p>以4位补码为例，可以将补码理解为在原数字的基础上进行了偏移处理的结果。补码的范围是<code>0~15</code>，而原数字的范围是<code>-8~7</code>。具体来说：</p>
+<ol>
+<li>对于<code>0</code>和正数，补码的值与原数字相同，范围为<code>0~7</code>。</li>
+<li>对于负数，补码的值是从最大值<code>15</code>开始向<code>0</code>偏移，范围为<code>15~8</code>。例如，<code>-1</code>的补码为<code>15</code>，<code>-2</code>的补码为<code>14</code>，依此类推，直到<code>-8</code>的补码为<code>8</code>。</li>
+</ol>
+<p>补码可以简化有符号整数的加减法运算，将其都统一成补码的加法运算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    0011 (3)</span><br><span class="line">  + 1111 (-1)</span><br><span class="line">--------------</span><br><span class="line">   10010 (2)</span><br></pre></td></tr></table></figure>
+
+<h4 id="移码"><a href="#移码" class="headerlink" title="移码"></a>移码</h4><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%A7%BB%E7%A0%81">移码</a><strong>通常用于表示浮点运算的阶码</strong>。无论正数负数，都是将该原码的补码的首位(符号位) 取反得到移码。例如，假设使用8位移码，则+5的移码表示为<code>10000101</code>，-5的移码表示为<code>01111011</code>。</p>
+<p>在数轴上，移码所表示的范围，恰好对应于真值在数轴上的范围向正方向移动${2^{n}}$个单元</p>
+<p>补码表示的好处在于去掉了负号，但人们很难从形式上判断真值大小，与人们的习惯不符;因为补码表示中符号也成了一位二进制的数，而移码的表示中与补码相差一个符号位，而且可以从移码看出真值的大小，转换方便。</p>
+<table>
+<thead>
+<tr>
+<th>补码</th>
+<th>移码</th>
+<th>十进制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0111</td>
+<td>1111</td>
+<td>7</td>
+</tr>
+<tr>
+<td>0110</td>
+<td>1110</td>
+<td>6</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>1010</td>
+<td>2</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>1001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0000</td>
+<td>1000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>0111</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>0110</td>
+<td>−2</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>0001</td>
+<td>−7</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>0000</td>
+<td>−8</td>
+</tr>
+</tbody></table>
+<h4 id="0的原码、反码、补码、移码"><a href="#0的原码、反码、补码、移码" class="headerlink" title="0的原码、反码、补码、移码"></a>0的原码、反码、补码、移码</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>原码</th>
+<th>反码</th>
+<th>补码</th>
+<th>移码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+0</td>
+<td>00000000</td>
+<td>00000000</td>
+<td>00000000</td>
+<td>10000000</td>
+</tr>
+<tr>
+<td>-0</td>
+<td>10000000</td>
+<td>11111111</td>
+<td>00000000</td>
+<td>10000000</td>
+</tr>
+</tbody></table>
+<h3 id="浮点数的二进制表示"><a href="#浮点数的二进制表示" class="headerlink" title="浮点数的二进制表示"></a>浮点数的二进制表示</h3><p>下面以<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8D%8A%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0">半精度浮点数</a>为例</p>
+<img src="/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E5%8E%9F%E7%A0%81_%E5%8F%8D%E7%A0%81_%E8%A1%A5%E7%A0%81_%E7%A7%BB%E7%A0%81/1741335147531.jpg" class="" title="半精度浮点数二进制表示">
+
+<p>半精度浮点数的二进制表示主要包含：符号位(16)、指数位(15-11)、尾数(10-1)</p>
+<ul>
+<li>符号位：浮点数的正负</li>
+<li>指数位：表示浮点数的指数部分（采用偏移法表示）</li>
+<li>尾数：表示浮点数的精确值</li>
+</ul>
+<h3 id="浮点数加法运算"><a href="#浮点数加法运算" class="headerlink" title="浮点数加法运算"></a>浮点数加法运算</h3><ol>
+<li>首先先进性对阶，阶码小的向阶码大的对齐，同时尾数进行右移（变小）。</li>
+<li>然后再对尾数进行加减法运算。</li>
+<li>然后进行规格化处理（IEEE754）。</li>
+</ol>
+<h3 id="规格化"><a href="#规格化" class="headerlink" title="规格化"></a>规格化</h3><p>1.对于原码表示的尾数 尾数<strong>最高有效位为1</strong>时，浮点数为规格化。<br>2对于补码表示的尾数 当<strong>数符位与尾数最高有效位相异</strong>时，浮点数为规格化。</p>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E8%BD%AF%E8%80%83/">软考</a><a class="link-muted mr-2" rel="tag" href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">软件设计师</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/Kubernetes/kubernetes%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">kubernetes部署服务</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/Docker/Liunx%E4%BD%BF%E7%94%A8Docker%E7%BC%96%E8%AF%91web%E9%A1%B9%E7%9B%AE/"><span class="level-item">Liunx使用Docker编译web项目</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#原码、反码、补码、移码"><span class="level-left"><span class="level-item">1</span><span class="level-item">原码、反码、补码、移码</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#原码"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">原码</span></span></a></li><li><a class="level is-mobile" href="#反码"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">反码</span></span></a></li><li><a class="level is-mobile" href="#补码"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">补码</span></span></a></li><li><a class="level is-mobile" href="#移码"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">移码</span></span></a></li><li><a class="level is-mobile" href="#0的原码、反码、补码、移码"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">0的原码、反码、补码、移码</span></span></a></li></ul></li><li><a class="level is-mobile" href="#浮点数的二进制表示"><span class="level-left"><span class="level-item">2</span><span class="level-item">浮点数的二进制表示</span></span></a></li><li><a class="level is-mobile" href="#浮点数加法运算"><span class="level-left"><span class="level-item">3</span><span class="level-item">浮点数加法运算</span></span></a></li><li><a class="level is-mobile" href="#规格化"><span class="level-left"><span class="level-item">4</span><span class="level-item">规格化</span></span></a></li><li><a class="level is-mobile" href="#TODO"><span class="level-left"><span class="level-item">5</span><span class="level-item">TODO</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar/sasuke.jpg" alt="Shaway"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Shaway</p><p class="is-size-6 is-block">但行好事，莫问前程</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>The junction of Teyvat and Demacia</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">18</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">13</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ShawayL" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ShawayL"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><figure class="media-left"><a class="image" href="/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/"><img src="/images/cover/640%20(1).png" alt="软件设计师"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-04-18T06:14:00.000Z">2025-04-18</time></p><p class="title"><a href="/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">软件设计师</a></p><p class="categories"><a href="/categories/%E8%BD%AF%E8%80%83/">软考</a> / <a href="/categories/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">软件设计师</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/Kubernetes/kubernetes%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/"><img src="/images/cover/1050187.jpg" alt="kubernetes部署服务"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-03-12T01:48:00.000Z">2025-03-12</time></p><p class="title"><a href="/Kubernetes/kubernetes%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/">kubernetes部署服务</a></p><p class="categories"><a href="/categories/kubernetes/">kubernetes</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E5%8E%9F%E7%A0%81_%E5%8F%8D%E7%A0%81_%E8%A1%A5%E7%A0%81_%E7%A7%BB%E7%A0%81/"><img src="/images/cover/640%20(1).png" alt="原码、反码、补码、移码"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-03-07T06:14:00.000Z">2025-03-07</time></p><p class="title"><a href="/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/%E5%8E%9F%E7%A0%81_%E5%8F%8D%E7%A0%81_%E8%A1%A5%E7%A0%81_%E7%A7%BB%E7%A0%81/">原码、反码、补码、移码</a></p><p class="categories"><a href="/categories/%E8%BD%AF%E8%80%83/">软考</a> / <a href="/categories/%E8%BD%AF%E8%80%83/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">软件设计师</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/Docker/Liunx%E4%BD%BF%E7%94%A8Docker%E7%BC%96%E8%AF%91web%E9%A1%B9%E7%9B%AE/"><img src="/images/cover/qyccover0.jpg" alt="Liunx使用Docker编译web项目"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-02-25T03:20:56.000Z">2025-02-25</time></p><p class="title"><a href="/Docker/Liunx%E4%BD%BF%E7%94%A8Docker%E7%BC%96%E8%AF%91web%E9%A1%B9%E7%9B%AE/">Liunx使用Docker编译web项目</a></p><p class="categories"><a href="/categories/Docker/">Docker</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/C_C++/cpp%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8Cstd-move/"><img src="/images/cover/1050187.jpg" alt="c++右值引用和std::move"></a></figure><div class="media-content"><p class="date"><time dateTime="2023-06-30T02:39:49.000Z">2023-06-30</time></p><p class="title"><a href="/C_C++/cpp%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8Cstd-move/">c++右值引用和std::move</a></p><p class="categories"><a href="/categories/C-C/">C/C++</a></p></div></article></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/ShawayL" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Shaway github</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/logo/sasuke.png" alt="shaway" height="28"></a><p class="is-size-7"><span>&copy; 2025 shaway</span>  Powered by <a href="https://github.com/ShawayL" target="_blank" rel="noopener">Shaway</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ShawayL/ShawayL.github.io"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
